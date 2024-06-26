@@ -94,34 +94,6 @@
         </div>
     </section>
 
-    <section class="ftco-section ftco-no-pt">
-        <div class="container">
-            <div class="row justify-content-center pb-5 mb-3">
-                <div class="col-md-7 heading-section text-center ftco-animate">
-                    <h2>Parcourir tout les Auteurs</h2>
-                </div>
-            </div>
-            <div class="row">
-                <% 
-                const authorsPerColumn = Math.ceil(authors.length / 6);
-                for(let i = 0; i < 6; i++) { 
-                %>
-                    <div class="col-md-2 ftco-animate">
-                        <ul class="top">
-                            <% 
-                            const startIndex = i * authorsPerColumn;
-                            const endIndex = Math.min((i + 1) * authorsPerColumn, authors.length);
-                            for(let j = startIndex; j < endIndex; j++) { 
-                            %>
-                                <li><a href="/author_details/<%= authors[j].slug %>"><%= authors[j].name %></a></li>
-                            <% } %>
-                        </ul>
-                    </div>
-                <% } %>
-            </div>
-        </div>
-    </section>
-
     <footer class="ftco-footer">
         <div class="container">
             <div class="row mb-5">
