@@ -115,5 +115,29 @@ router.get('/author_details/:slug', async (req, res) => {
   }
 });
 
+router.get('/genre', async (req, res) => {
+
+  try {
+    // URL de l'API ou chemin du fichier JSON
+    const url = 'http://167.86.106.97:3535/genre'
+    
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const jsonData = await response.json();
+    
+    // Extraction des livres à partir de data
+    const genres = jsonData;
+    console.log(genres)
+    
+    // Rendu de la page avec les données des livres
+    res.render('genre', { genres: genres });
+  } catch (error) {
+    console.error('Erreur lors de la récupération des données :', error);
+    res.status(500).render('error', { message: 'Erreur lors de la récupération des données des livres' });
+  }
+});
+
 
 module.exports = router;
