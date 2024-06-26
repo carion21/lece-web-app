@@ -315,10 +315,10 @@
                     <p><%= author.biography %></p>
                     <ul>
                         
-                        <li>Genres : 
+                        <li>Livres : 
                             <span>
                                 <% author.books.forEach((genre, index) => { %>
-                                    <%= genre.title %><%= index < author.books.length - 1 ? ', ' : '' %>
+                                    <a href="/book_details/<%= genre.slug %>"><%= genre.title %><%= index < author.books.length - 1 ? ', ' : '' %></a>
                                 <% }); %>
                             </span>
                         </li>
