@@ -40,6 +40,32 @@ router.get('/book_details', (req, res) => {
   res.render('book_details');
 });
 
+router.get('/book_details/:slug', async (req, res) => {
+  try {
+    const { slug } = req.params;
+    
+    // URL de l'API pour récupérer les détails d'un livre spécifique
+    const apiUrl = `http://167.86.106.97:3535/book/by-slug/${slug}`;
+    
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const bookData = await response.json();
+    
+    // Vérifiez si les données du livre sont dans une propriété 'data'
+    const book = bookData.data || bookData;
+    
+    // Rendu de la page avec les données du livre
+    res.render('book_details', { book });
+  } catch (error) {
+    console.error('Erreur lors de la récupération des détails du livre :', error);
+    res.status(500).render('error', { message: 'Erreur lors de la récupération des détails du livre' });
+  }
+});
+
+
 router.get('/author', (req, res) => {
   res.render('author');
 });
