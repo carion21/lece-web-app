@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+require('dotenv').config();
+
+const apiUrl = process.env.API_URL;
 
 router.get('/', (req, res) => {
   res.render('index');
@@ -16,9 +19,9 @@ router.get('/top-seller', (req, res) => {
 router.get('/book', async (req, res) => {
   try {
     // URL de l'API ou chemin du fichier JSON
-    const url = 'http://167.86.106.97:3535/book' // ou './chemin/vers/votre/fichier.json';
+    const URL = `${apiUrl}/book` // ou './chemin/vers/votre/fichier.json';
     
-    const response = await fetch(url);
+    const response = await fetch(URL);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -45,9 +48,9 @@ router.get('/book_details/:slug', async (req, res) => {
     const { slug } = req.params;
     
     // URL de l'API pour récupérer les détails d'un livre spécifique
-    const apiUrl = `http://167.86.106.97:3535/book/by-slug/${slug}`;
+    const URL = `${apiUrl}/book/by-slug/${slug}`;
     
-    const response = await fetch(apiUrl);
+    const response = await fetch(URL);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -70,9 +73,9 @@ router.get('/author', async (req, res) => {
 
   try {
     // URL de l'API ou chemin du fichier JSON
-    const url = 'http://167.86.106.97:3535/author' // ou './chemin/vers/votre/fichier.json';
+    const URL = `${apiUrl}/author` // ou './chemin/vers/votre/fichier.json';
     
-    const response = await fetch(url);
+    const response = await fetch(URL);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -95,9 +98,9 @@ router.get('/author_details/:slug', async (req, res) => {
     const { slug } = req.params;
     
     // URL de l'API pour récupérer les détails d'un livre spécifique
-    const apiUrl = `http://167.86.106.97:3535/author/by-slug/${slug}`;
+    const URL = `${apiUrl}/author/by-slug/${slug}`;
     
-    const response = await fetch(apiUrl);
+    const response = await fetch(URL);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -119,9 +122,9 @@ router.get('/genre', async (req, res) => {
 
   try {
     // URL de l'API ou chemin du fichier JSON
-    const url = 'http://167.86.106.97:3535/genre'
+    const URL = `${apiUrl}/genre`
     
-    const response = await fetch(url);
+    const response = await fetch(URL);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -136,6 +139,43 @@ router.get('/genre', async (req, res) => {
   } catch (error) {
     console.error('Erreur lors de la récupération des données :', error);
     res.status(500).render('error', { message: 'Erreur lors de la récupération des données des livres' });
+  }
+});
+
+router.get('/genre/:slug', async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const genreDetailUrl = `${apiUrl}/genre/by-slug/${slug}`;
+    const allGenresUrl = `${apiUrl}/genre`;
+
+    const [genreResponse, allGenresResponse] = await Promise.all([
+      fetch(genreDetailUrl),
+      fetch(allGenresUrl)
+    ]);
+
+    if (!genreResponse.ok || !allGenresResponse.ok) {
+      throw new Error(`HTTP error! status: ${genreResponse.status}, ${allGenresResponse.status}`);
+    }
+
+    const [genreDetail, allGenres] = await Promise.all([
+      genreResponse.json(),
+      allGenresResponse.json()
+    ]);
+
+
+    if (!genreDetail.data || !allGenres) {
+      return res.status(404).render('error', { message: 'Genre non trouvé' });
+    }
+
+    // console.log(genreDetail.data.);
+
+    res.render('genre_details', { 
+      genreDetail: genreDetail.data, 
+      allGenres: allGenres 
+    });
+  } catch (error) {
+    console.error('Erreur lors de la récupération des données :', error);
+    res.status(500).render('error', { message: 'Erreur lors de la récupération des données des genres' });
   }
 });
 
