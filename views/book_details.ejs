@@ -316,17 +316,18 @@
                     <h2>À propos de ce livre : </h2>
                     <p><%= book.summary %></p>
                     <ul>
-                        <li>Auteur : <span><%= book.author.name %></span></li>
+                        <li>Auteur : <span><a href="/author_details/<%= book.author.slug %>"><%= book.author.name %></a></span></li>
                         <li>Statut : <span><%= book.status ? 'Disponible' : 'Non disponible' %></span></li>
                         <li>Genres : 
                             <span>
                                 <% book.genres.forEach((genre, index) => { %>
-                                    <%= genre.name %><%= index < book.genres.length - 1 ? ', ' : '' %>
+                                    <a href="/genre/<%= genre.slug %>"><%= genre.name %><%= index < book.genres.length - 1 ? ', ' : '' %></a>
+                                    
                                 <% }); %>
                             </span>
                         </li>
                         <li>Code : <span><%= book.code %></span></li>
-                        <li>Date de création : <span><%= new Date(book.createdAt).toLocaleDateString() %></span></li>
+                        <li>Date de publication : <span><%= new Date(book.createdAt).toLocaleDateString() %></span></li>
                         <% if (book.publishedDate) { %>
                             <li>Date de publication : <span><%= new Date(book.publishedDate).toLocaleDateString() %></span></li>
                         <% } %>
