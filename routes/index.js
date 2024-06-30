@@ -20,17 +20,17 @@ router.get('/book', async (req, res) => {
   try {
     // URL de l'API ou chemin du fichier JSON
     const URL = `${apiUrl}/book` // ou './chemin/vers/votre/fichier.json';
-    
+
     const response = await fetch(URL);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const jsonData = await response.json();
-    
+
     // Extraction des livres à partir de data
     const books = jsonData.data;
     console.log(books)
-    
+
     // Rendu de la page avec les données des livres
     res.render('book', { books: books });
   } catch (error) {
@@ -46,20 +46,20 @@ router.get('/book_details', (req, res) => {
 router.get('/book_details/:slug', async (req, res) => {
   try {
     const { slug } = req.params;
-    
+
     // URL de l'API pour récupérer les détails d'un livre spécifique
     const URL = `${apiUrl}/book/by-slug/${slug}`;
-    
+
     const response = await fetch(URL);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    
+
     const bookData = await response.json();
-    
+
     // Vérifiez si les données du livre sont dans une propriété 'data'
     const book = bookData.data || bookData;
-    
+
     // Rendu de la page avec les données du livre
     res.render('book_details', { book });
   } catch (error) {
@@ -74,17 +74,17 @@ router.get('/author', async (req, res) => {
   try {
     // URL de l'API ou chemin du fichier JSON
     const URL = `${apiUrl}/author` // ou './chemin/vers/votre/fichier.json';
-    
+
     const response = await fetch(URL);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const jsonData = await response.json();
-    
+
     // Extraction des livres à partir de data
     const authors = jsonData.data;
     console.log(authors)
-    
+
     // Rendu de la page avec les données des livres
     res.render('author', { authors: authors });
   } catch (error) {
@@ -96,20 +96,20 @@ router.get('/author', async (req, res) => {
 router.get('/author_details/:slug', async (req, res) => {
   try {
     const { slug } = req.params;
-    
+
     // URL de l'API pour récupérer les détails d'un livre spécifique
     const URL = `${apiUrl}/author/by-slug/${slug}`;
-    
+
     const response = await fetch(URL);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    
+
     const authorData = await response.json();
-    
+
     // Vérifiez si les données du livre sont dans une propriété 'data'
     const author = authorData.data || authorData;
-    
+
     // Rendu de la page avec les données du livre
     res.render('author_details', { author });
   } catch (error) {
@@ -123,17 +123,17 @@ router.get('/genre', async (req, res) => {
   try {
     // URL de l'API ou chemin du fichier JSON
     const URL = `${apiUrl}/genre`
-    
+
     const response = await fetch(URL);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const jsonData = await response.json();
-    
+
     // Extraction des livres à partir de data
     const genres = jsonData;
     console.log(genres)
-    
+
     // Rendu de la page avec les données des livres
     res.render('genre', { genres: genres });
   } catch (error) {
@@ -169,13 +169,56 @@ router.get('/genre/:slug', async (req, res) => {
 
     // console.log(genreDetail.data.);
 
-    res.render('genre_details', { 
-      genreDetail: genreDetail.data, 
-      allGenres: allGenres 
+    res.render('genre_details', {
+      genreDetail: genreDetail.data,
+      allGenres: allGenres
     });
   } catch (error) {
     console.error('Erreur lors de la récupération des données :', error);
     res.status(500).render('error', { message: 'Erreur lors de la récupération des données des genres' });
+  }
+});
+
+router.post('/newsletter', async (req, res) => {
+  try {
+    const { name, email } = req.body;
+
+    // Vérification des données
+    if (!name || !email) {
+      return res.status(400).json({ message: 'Le nom et l\'email sont requis' });
+    }
+
+    // Préparer les données pour l'API
+    const formData = {
+      name,
+      email
+    };
+
+    // URL de l'API (à remplacer par votre URL réelle)
+    const APIURL = apiUrl + '/subscriber';
+
+    // Envoyer les données à l'API
+    const response = await fetch(APIURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log(result);
+
+    // Répondre au client
+    res.status(200).json({ message: 'Message envoyé avec succès', data: result });
+
+  } catch (error) {
+    console.error('Erreur lors de l\'envoi du message :', error);
+    res.status(500).json({ message: 'Une erreur est survenue lors de l\'envoi du message' });
   }
 });
 

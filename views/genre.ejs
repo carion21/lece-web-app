@@ -37,7 +37,7 @@
     <section class="ftco-section">
         <div class="container">
             <div class="row">
-                <% genres.slice(0, 4).forEach(function(genre) { %>
+                <% genres.slice(0, 8).forEach(function(genre) { %>
                     <div class="col-md-6 col-lg-3 ftco-animate">
                         <div class="staff">
                             <div class="img-wrap d-flex align-items-stretch">
@@ -48,7 +48,7 @@
                                 <h3><%= genre.name %></h3>
                                 <div class="faded">
                                     <p><%= genre.description.length > 60 ? genre.description.substring(0, 60) + '...' : genre.biography %></p>
-                                    <a href="# class="btn btn-primary">Voir tous les livres</a>
+                                    <a href="/genre/<%= genre.slug %>""btn btn-primary">En savoir plus</a>
                                     <ul class="ftco-social text-center">
                                         <li class="ftco-animate"><a href="#"
                                                 class="d-flex align-items-center justify-content-center"><span
@@ -91,7 +91,7 @@
                             const endIndex = Math.min((i + 1) * genresPerColumn, genres.length);
                             for(let j = startIndex; j < endIndex; j++) { 
                             %>
-                                <li><a href="/genre_details/<%= genres[j].slug %>"><%= genres[j].name %></a></li>
+                                <li><a href="/genre/<%= genres[j].slug %>"><%= genres[j].name %></a></li>
                             <% } %>
                         </ul>
                     </div>
