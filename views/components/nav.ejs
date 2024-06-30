@@ -1,0 +1,20 @@
+<!-- components/navbar.ejs -->
+<div class="collapse navbar-collapse" id="ftco-nav">
+    <ul class="navbar-nav m-auto">
+        <% 
+        const navItems = [
+            { name: 'Home', link: '/' },
+            { name: 'Meilleur ventes', link: '/top-seller' },
+            { name: 'Livres', link: '/book' },
+            { name: 'Auteurs', link: '/author' },
+            { name: 'Genres', link: '/genre' }
+
+        ];
+        navItems.forEach((item, index) => { 
+        %>
+            <li class="nav-item <%= currentPage === index ? 'active' : '' %>">
+                <a href="<%= item.link %>" class="nav-link"><%= item.name %></a>
+            </li>
+        <% }); %>
+    </ul>
+</div>
