@@ -2,6 +2,7 @@ const express = require('express');
 
 const { getAppName, getMoment, getAppMenu } = require('../../config/utils');
 const { control_service_data, core_create_subscriber, core_get_recents_book } = require('../../config/global_functions');
+const { CAROUSELS } = require('../../config/consts');
 
 const router = express.Router();
 
@@ -17,10 +18,13 @@ router.get('/', async function (req, res, next) {
         books = books.filter(book => book.status == true);
     }
 
+    
+
     res.render(service + '/index', {
         menus: getAppMenu(),
         moment: moment,
-        books
+        carousels: CAROUSELS,
+        books,
     });
 });
 
@@ -51,6 +55,7 @@ router.post('/', async function (req, res, next) {
             res.render(service + "/index", {
                 menus: getAppMenu(),
                 moment: moment,
+                carousels: CAROUSELS,
                 message: message
             })
         } else {
@@ -66,6 +71,7 @@ router.post('/', async function (req, res, next) {
             service + "/index", {
             menus: getAppMenu(),
             moment: moment,
+            carousels: CAROUSELS,
             books: books,
             rbody: body,
             error: error

@@ -35,6 +35,19 @@ class Consts {
         },
     ];
 
+    static CAROUSELS = [
+        {
+            "text": "Les bons livres ne livrent pas tous leurs secrets en même temps",
+            "image": "carousel2.jpeg",
+            "color": "black"
+        },
+        {
+            "text": "Les bons livres ne livrent pas tous leurs secrets en même temps",
+            "image": "carousel1.jpeg",
+            "color": "black"
+        }
+    ]
+
     static DEFAULT_TYPES = [
         "string",
         "string_not_empty",
