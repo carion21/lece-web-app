@@ -460,6 +460,70 @@ const core_retrieve_book = (async (book_slug) => {
   return result
 })
 
+const core_get_tops_book = (async () => {
+  let result = {
+    success: false
+  }
+
+  let error = ""
+
+  let urlcomplete = urlapi + process.env.ROUTE_OF_CORE_FOR_BOOK
+  urlcomplete += "/tops"
+  try {
+    let response = await axios.get(urlcomplete)
+    if (response.status == 200) {
+      let rdata = response.data
+      result.success = true
+      result.data = rdata.data
+    } else {
+      error = response.data.message
+    }
+  } catch (err) {
+    error = err.message
+    if (err.response) {
+      error = err.response.data.message
+    }
+  }
+
+  if (error != "") {
+    result.message = error
+  }
+
+  return result
+})
+
+const core_get_recents_book = (async () => {
+  let result = {
+    success: false
+  }
+
+  let error = ""
+
+  let urlcomplete = urlapi + process.env.ROUTE_OF_CORE_FOR_BOOK
+  urlcomplete += "/recents"
+  try {
+    let response = await axios.get(urlcomplete)
+    if (response.status == 200) {
+      let rdata = response.data
+      result.success = true
+      result.data = rdata.data
+    } else {
+      error = response.data.message
+    }
+  } catch (err) {
+    error = err.message
+    if (err.response) {
+      error = err.response.data.message
+    }
+  }
+
+  if (error != "") {
+    result.message = error
+  }
+
+  return result
+})
+
 const core_create_subscriber = (async (subscriber_data) => {
   let result = {
     success: false
@@ -531,6 +595,8 @@ module.exports = {
   core_retrieve_author,
   core_list_book,
   core_retrieve_book,
+  core_get_tops_book,
+  core_get_recents_book,
   core_create_subscriber,
   core_create_message
 }
