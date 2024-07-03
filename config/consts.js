@@ -37,7 +37,7 @@ class Consts {
 
     static CAROUSELS = [
         {
-            "text": "Les bons livres ne livrent pas tous leurs secrets en même temps",
+            "text": "",
             "image": "carousel2.jpeg",
             "color": "black"
         },
