@@ -56,6 +56,7 @@ router.post('/', async function (req, res, next) {
                 menus: getAppMenu(),
                 moment: moment,
                 carousels: CAROUSELS,
+                books: books,
                 message: message
             })
         } else {
