@@ -1,0 +1,66 @@
+<% extend('../base') %>
+
+    <div class="card-wrapper">
+        <div class="card">
+            <!-- card left -->
+            <div class="product-imgs">
+                <div class="img-display">
+                    <div class="img-showcase">
+                        <img src="<%= book.coverUrl %>" alt="<%= book.title %> cover">
+                    </div>
+                </div>
+            </div>
+            <!-- card right -->
+            <div class="product-content">
+                <h2 class="product-title">
+                    <%= book.title %>
+                </h2>
+                <a href="#" class="product-link">Voir plus de détails</a>
+
+                <div class="product-detail">
+                    <h2>À propos de ce livre : </h2>
+                    <p>
+                        <%= book.summary %>
+                    </p>
+                    <ul>
+                        <li>
+                            Auteur : 
+                            <span>
+                                <a href="/author/view/<%= book.author.slug %>">
+                                    <%= book.author.name %>
+                                </a>
+                            </span>
+                        </li>
+                        <li>
+                            Genres :
+                            <span>
+                                <% for (g of book.genres) { %>
+                                    <a href="/genre/view/<%= g.slug %>">
+                                        <%= g.name %>
+                                    </a>
+                                <% } %>
+                            </span>
+                        </li>
+                        <li>
+                            Code : 
+                            <span>
+                                <%= book.code %>
+                            </span>
+                        </li>
+                        <li>
+                            Date de parution : 
+                            <span>
+                                <td>
+                                    <% if (book.releaseDate) { %>
+                                        <%= moment(book.releaseDate).format('MM/YYYY') %>
+                                    <% } else { %>
+                                        Non renseignée
+                                    <% } %>
+                                </td>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>

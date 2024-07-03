@@ -1,0 +1,52 @@
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="contact-wrap w-100 p-md-5 p-4">
+                    <h3 class="mb-4">Newsletter</h3>
+                    <% if (locals.error) { %>
+                        <div class="alert alert-danger">
+                            <%= locals.error %>
+                        </div>
+                    <% } %>
+                    <% if (locals.message) { %>
+                        <div class="alert alert-success">
+                            <%= locals.message %>
+                        </div>
+                        <a href="/" class="btn btn-primary">
+                            Revenir à l'accueil
+                        </a>
+                    <% } else { %>
+                        <form method="POST" action="/" id="subscriberForm" name="subscriberForm"
+                            class="subscriberForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="label" for="name">Nom complet</label>
+                                        <input type="text" class="form-control" name="name" id="name"
+                                        value="<% if (locals.rbody) { %><%= rbody.name %><% } %>"
+                                            placeholder="Prenom NOM" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="label" for="email">Adresse électronique</label>
+                                        <input type="email" class="form-control" name="email" id="email"
+                                        value="<% if (locals.rbody) { %><%= rbody.email %><% } %>"
+                                            placeholder="Email" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="submit" value="Envoyer" class="btn btn-primary">
+                                        <div class="submitting"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

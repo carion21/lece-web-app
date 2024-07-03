@@ -7,12 +7,13 @@
 var app = require('../app');
 var debug = require('debug')('calabas:server');
 var http = require('http');
+const { PORT_SYSTEM, APP_NAME } = require('../config/consts');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || PORT_SYSTEM);
 app.set('port', port);
 
 /**
@@ -25,7 +26,9 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, function () {
+  console.log('Server of ' + APP_NAME + ' listening on port ' + port);
+});
 server.on('error', onError);
 server.on('listening', onListening);
 

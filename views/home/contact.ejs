@@ -1,0 +1,92 @@
+<% extend('../base') %>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5 wrap-about pl-md-5 ftco-animate py-5"
+                style="border-right:1px solid #000;height:500px">
+                <div class="heading-section">
+                    <h2 class="mb-4">
+                        Contactez-nous
+                    </h2>
+
+                    <p>
+                        Nous sommes ravis de vous entendre !
+                    </p>
+                    <p>
+                        Si vous avez des questions, des suggestions, ou des demandes, n'hésitez pas à nous contacter en utilisant le formulaire ci-dessous. 
+                    </p>
+                    <p>
+                        Nous nous efforçons de répondre à toutes les demandes dans un délai de 48 heures.
+                    </p>
+                </div>
+
+            </div>
+            <div class="col-md-7">
+                <div class="wrapper px-md-4">
+                    <div class="row no-gutters mb-5">
+                        <div class="col-md-12">
+                            <div class="contact-wrap w-100 p-md-5 p-4">
+                                <h3 class="mb-4">Formulaire</h3>
+                                <% if (locals.error) { %>
+                                    <div class="alert alert-danger">
+                                        <%= locals.error %>
+                                    </div>
+                                <% } %>
+                                <% if (locals.message) { %>
+                                    <div class="alert alert-success">
+                                        <%= locals.message %>
+                                    </div>
+                                    <a href="/contact" class="btn btn-primary">
+                                        Rajouter un autre message
+                                    </a>
+                                <% } else { %>
+                                    <form method="POST" action="/contact" id="contactForm" name="contactForm"
+                                        class="contactForm">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label class="label" for="name">Nom complet</label>
+                                                    <input type="text" class="form-control" name="name" id="name"
+                                                    value="<% if (locals.rbody) { %><%= rbody.name %><% } %>"
+                                                        placeholder="Prenom NOM" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="form-group">
+                                                    <label class="label" for="email">Adresse électronique</label>
+                                                    <input type="email" class="form-control" name="email" id="email"
+                                                    value="<% if (locals.rbody) { %><%= rbody.email %><% } %>"
+                                                        placeholder="Email" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="subject">Sujet</label>
+                                                    <input type="text" class="form-control" name="subject" id="subject"
+                                                    value="<% if (locals.rbody) { %><%= rbody.name %><% } %>"
+                                                        placeholder="Sujet" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="content">Message</label>
+                                                    <textarea name="content" class="form-control" id="content" cols="30"
+                                                        rows="4" placeholder="Message" required><% if (locals.rbody) { %><%= rbody.content %><% } %></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="submit" value="Envoyer" class="btn btn-primary">
+                                                    <div class="submitting"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
