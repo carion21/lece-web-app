@@ -15,7 +15,6 @@
                 <h2 class="product-title">
                     <%= book.title %>
                 </h2>
-                <a href="#" class="product-link">Voir plus de détails</a>
 
                 <div class="product-detail">
                     <h2>À propos de ce livre : </h2>
@@ -24,7 +23,7 @@
                     </p>
                     <ul>
                         <li>
-                            Auteur : 
+                            Auteur(e) :
                             <span>
                                 <a href="/author/view/<%= book.author.slug %>">
                                     <%= book.author.name %>
@@ -42,21 +41,21 @@
                             </span>
                         </li>
                         <li>
-                            Code : 
-                            <span>
-                                <%= book.code %>
-                            </span>
-                        </li>
-                        <li>
                             Date de parution : 
                             <span>
                                 <td>
                                     <% if (book.releaseDate) { %>
-                                        <%= moment(book.releaseDate).format('MM/YYYY') %>
+                                        <%= moment(book.releaseDate).format('MMMM YYYY').toUpperCase() %>
                                     <% } else { %>
                                         Non renseignée
                                     <% } %>
                                 </td>
+                            </span>
+                        </li>
+                        <li>
+                            Code : 
+                            <span>
+                                <%= book.code %>
                             </span>
                         </li>
                     </ul>
