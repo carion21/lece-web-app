@@ -13,8 +13,10 @@ router.get('/:slug', async function (req, res, next) {
     let genre = null;
 
     let r_core_genre = await core_retrieve_genre(slug);
+    console.log(r_core_genre);
     if (r_core_genre.success) {
         genre = r_core_genre.data
+        genre.books = genre.books.filter(book => book.status == true);
     }
 
     res.render(service + '/view', {
