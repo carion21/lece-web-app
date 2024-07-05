@@ -15,10 +15,8 @@
                 <h2 class="product-title">
                     <%= author.name %>
                 </h2>
-                <a href="#" class="product-link">Voir plus de détails</a>
                 <% var books = author.books %>
                 <div class="product-detail">
-                    <h2>À propos de l'auteur : </h2>
                     <p>
                         <%= author.biography %>
                     </p>
@@ -48,7 +46,6 @@
                                 <img class="img-thumbnail rounded" src="<%= b.coverUrl %>" alt="<%= b.title %>">
                             </a>
                         </div>
-                        
                     <% } %>
                 </div>
             </div>
