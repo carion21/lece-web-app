@@ -38,7 +38,7 @@ class Consts {
     static CAROUSELS = [
         {
             "text": "",
-            "image": "carousel2.jpeg",
+            "image": "carousel3.jpeg",
             "color": "black"
         },
         {
