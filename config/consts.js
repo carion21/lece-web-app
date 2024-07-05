@@ -42,10 +42,15 @@ class Consts {
             "color": "black"
         },
         {
-            "text": "Les bons livres ne livrent pas tous leurs secrets en même temps",
+            "text": "",
             "image": "carousel1.jpeg",
             "color": "black"
-        }
+        },
+        // {
+        //     "text": "Les bons livres ne livrent pas tous leurs secrets en même temps",
+        //     "image": "carousel1.jpeg",
+        //     "color": "black"
+        // }
     ]
 
     static DEFAULT_TYPES = [
