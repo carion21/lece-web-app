@@ -6,14 +6,7 @@
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-9 ftco-animate mb-0 text-center">
-                    <p class="breadcrumbs mb-0">
-                        <span class="mr-2">
-                            <a href="/"  style="color: white;">Accueil 
-                                <i class="fa fa-chevron-right"  style="color: white;"></i>
-                            </a>
-                        </span> 
-                        <span style="color: white;">Livres <i class="fa fa-chevron-right" style="color: white;"></i></span></p>
-                    <h1 class="mb-0 bread"  style="color: white;">Livres</h1>
+                    <h1 class="mb-0 bread" style="color: white;">Catalogue</h1>
                 </div>
             </div>
         </div>
@@ -35,15 +28,14 @@
                                     </a>
                                 </h2>
                                 <span class="position">
-                                    <a style="color: black;"
-                                        href="/author/view/<%= b.author.slug %>">
+                                    <a style="color: black;" href="/author/view/<%= b.author.slug %>">
                                         <%= b.author.name %>
                                     </a>
                                 </span>
                             </div>
                         </div>
                     </div>
-                <% } %>
+                    <% } %>
             </div>
             <div class="row mt-5">
                 <div class="col text-center">

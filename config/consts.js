@@ -18,7 +18,7 @@ class Consts {
             route: "/top-reading",
         },
         {
-            label: "Livres",
+            label: "Catalogue",
             route: "/book/list",
         },
         {
