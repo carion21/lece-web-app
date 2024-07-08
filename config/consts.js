@@ -14,16 +14,16 @@ class Consts {
             route: "/",
         },
         {
-            label: "Top lectures",
-            route: "/top-reading",
-        },
-        {
             label: "Catalogue",
             route: "/book/list",
         },
         {
             label: "Auteurs",
             route: "/author/list",
+        },
+        {
+            label: "Top lectures",
+            route: "/top-reading",
         },
         {
             label: "Genres",

@@ -17,7 +17,7 @@
     <section class="ftco-section ftco-degree-bg">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 ftco-animate">
+                <div class="col-lg-12 ftco-animate">
                     <div class="row">
                         <% for (b of books.slice(0,9)) { %>
                             <div class="col-md-4 d-flex">
@@ -39,7 +39,9 @@
                                             </a>
                                         </h2>
                                         <span class="position">
-                                            <%= b.author.name %>
+                                            <a href="/author/view/<%= b.author.slug %>">
+                                                <%= b.author.name  %>
+                                            </a>
                                         </span>
                                     </div>
                                 </div>
@@ -63,7 +65,7 @@
                     </div>
                 </div> <!-- .col-md-8 -->
 
-                <div class="col-lg-3 sidebar pl-lg-3 ftco-animate">
+                <div class="col-lg-3 sidebar pl-lg-3 ftco-animate d-none">
                     <div class="sidebar-box">
                         <form action="#" class="search-form">
                             <div class="form-group">
