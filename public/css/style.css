@@ -12128,7 +12128,7 @@ textarea.form-control {
 }
 
 .book-wrap .img {
-  width: 58%;
+  width: 50%;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
@@ -12137,7 +12137,7 @@ textarea.form-control {
 }
 
 .book-wrap .text {
-  width: 42%;
+  width: 50%;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
