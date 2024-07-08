@@ -22,9 +22,11 @@
                                 <input type="text" class="form-control" name="search" id="search"
                                     value="<% if (locals.rbody) { %><%= rbody.search %><% } %>" 
                                     placeholder="Recherche par titre, auteur, genre, etc..."
+                                    style="border: 2px solid #f79a33;"
                                     required>
                                 <div class="input-group-append">
-                                    <button type="submit" class="btn btn-outline-secondary"  style="width: 150px;">
+                                    <button type="submit" class="btn btn-outline-secondary"  
+                                        style="width: 150px; border: 2px solid #f79a33; background-color: #f3e3dc;">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
