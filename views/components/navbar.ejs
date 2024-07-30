@@ -57,6 +57,20 @@
     </div>
 </div>
 
+<style>
+    /* Ajoutez ceci dans votre fichier CSS */
+    .nav-item:hover {
+        background-color: #f8f9fa;
+        color: #343a40;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+        border: 1px solid #ddd;
+    }
+</style>
+
 <div class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container-fluid">
 
@@ -68,11 +82,24 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav m-auto">
                 <% for (menu of menus) { %>
-                    <li class="nav-item">
-                        <a href="<%= menu.route %>" class="nav-link">
-                            <%= menu.label %>
-                        </a>
-                    </li>
+                    <% if (menu.submenus && menu.submenus.length > 0) { %>
+                        <li class="nav-item dropdown">
+                            <a href="" class="nav-link dropdown-toggle" id="navbarDropdown<%= menu.id %>" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <%= menu.label %>
+                            </a>
+                            <div class="nav-item dropdown-menu" aria-labelledby="navbarDropdown<%= menu.id %>">
+                                <% for (submenu of menu.submenus) { %>
+                                    <a class="dropdown-item" href="<%= submenu.route %>"><%= submenu.label %></a>
+                                <% } %>
+                            </div>
+                        </li>
+                    <% } else { %>
+                        <li class="nav-item">
+                            <a href="<%= menu.route %>" class="nav-link">
+                                <%= menu.label %>
+                            </a>
+                        </li>
+                    <% } %>
                 <% } %>
             </ul>
         </div>

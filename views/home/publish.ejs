@@ -1,33 +1,24 @@
 <% extend('../base') %>
 
 <section class="ftco-section">
+
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-5 wrap-about pl-md-5 ftco-animate py-5"
-                style="border-right:1px solid #000;height:500px">
-                <div class="heading-section">
-                    <h2 class="mb-4">
-                        Contactez-nous
-                    </h2>
-
-                    <p>
-                        Nous sommes ravis de vous entendre !
-                    </p>
-                    <p>
-                        Si vous avez des questions, des suggestions, ou des demandes, n'hésitez pas à nous contacter en utilisant le formulaire ci-dessous. 
-                    </p>
-                    <p>
-                        Nous nous efforçons de répondre à toutes les demandes dans un délai de 48 heures.
-                    </p>
-                </div>
-
-            </div>
-            <div class="col-md-7">
-                <div class="wrapper px-md-4">
+            <div class="col-md-12">
+                <div class="wrapper">
                     <div class="row no-gutters mb-5">
                         <div class="col-md-12">
                             <div class="contact-wrap w-100 p-md-5 p-4">
-                                <h3 class="mb-4">Formulaire de contact</h3>
+                                <% if (!locals.message) { %>
+                                    <div class="alert alert-info text-center">
+                                        <p>
+                                            <strong>Important:</strong> Afin de faciliter le processus de soumission, veuillez suivre <a href="/assets/sb.pdf" target="_blank">les instructions ici</a>.
+                                        </p>
+                                    </div>
+                                    <h3 class="mb-4">
+                                        Formulaire de soumission
+                                    </h3>
+                                <% } %>
                                 <% if (locals.error) { %>
                                     <div class="alert alert-danger">
                                         <%= locals.error %>
@@ -37,19 +28,19 @@
                                     <div class="alert alert-success">
                                         <%= locals.message %>
                                     </div>
-                                    <a href="/contact" class="btn btn-primary">
-                                        Rajouter un autre message
+                                    <a href="/" class="btn btn-primary">
+                                        Revenir à l'accueil
                                     </a>
                                 <% } else { %>
-                                    <form method="POST" action="/contact" id="contactForm" name="contactForm"
-                                        class="contactForm">
+                                    <form method="POST" action="/publish" id="publisherForm" name="publisherForm"
+                                        class="publisherForm" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="label" for="name">Nom complet</label>
+                                                    <label class="label" for="name">Nom complet de l'auteur</label>
                                                     <input type="text" class="form-control" name="name" id="name"
                                                     value="<% if (locals.rbody) { %><%= rbody.name %><% } %>"
-                                                        placeholder="Prenom NOM" required>
+                                                        placeholder="Prénom NOM" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -70,17 +61,27 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="label" for="subject">Sujet</label>
-                                                    <input type="text" class="form-control" name="subject" id="subject"
-                                                    value="<% if (locals.rbody) { %><%= rbody.name %><% } %>"
-                                                        placeholder="Sujet" required>
+                                                    <label class="label" for="title">Titre du livre</label>
+                                                    <input type="text" class="form-control" name="title" id="title"
+                                                    style="text-transform: capitalize;"
+                                                    value="<% if (locals.rbody) { %><%= rbody.title %><% } %>"
+                                                        placeholder="Titre" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="label" for="content">Message</label>
-                                                    <textarea name="content" class="form-control" id="content" cols="30"
-                                                        rows="4" placeholder="Message" required><% if (locals.rbody) { %><%= rbody.content %><% } %></textarea>
+                                                    <label class="label" for="file">Fichier PDF</label>
+                                                    <input type="file" class="form-control" name="file" id="file"
+                                                    value="<% if (locals.rbody) { %><%= rbody.file %><% } %>"
+                                                    accept=".pdf" placeholder="Fichier PDF" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="summary">Résumé du livre</label>
+                                                    <textarea name="summary" id="summary" cols="30" rows="4"
+                                                        class="form-control" placeholder="Résumé" required><% if (locals.rbody) { %><%= rbody.summary %><% } %></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -99,4 +100,5 @@
             </div>
         </div>
     </div>
+
 </section>

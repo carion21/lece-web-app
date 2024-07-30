@@ -1,0 +1,76 @@
+<% extend('../base') %>
+
+    <style>
+        .team-header {
+            text-align: center;
+            margin: 20px 0;
+            margin-bottom: 50px;
+        }
+
+        .team-member {
+            margin-bottom: 30px;
+        }
+
+        .team-member img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            border: 5px solid #f8f9fa;
+        }
+
+        .team-member h5 {
+            margin-top: 10px;
+            font-size: 1.25rem;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+    </style>
+
+    <section class="ftco-section">
+        <div class="container">
+            <h1 class="team-header">
+                Notre équipe
+            </h1>
+            <div class="row">
+                <% for (mb of team) { %>
+                    <!-- Member <%= team.indexOf(mb) + 1 %> -->
+                    <div class="col-md-4 team-member text-center">
+                        <% var img = mb.image ? '/assets/'+mb.image : "https://via.placeholder.com/150" %>
+                        <img src="<%= img %>" alt="Team Member <%= team.indexOf(mb) + 1 %>">
+                        <h5><%= mb.fullname %></h5>
+                        <p><%= mb.role %></p>
+                        <p><%= mb.bio %></p>
+                    </div>
+                <% } %>
+            </div>
+            <div class="row">
+                <!-- Member 4 -->
+                <div class="col-md-4 team-member text-center">
+                    <img src="https://via.placeholder.com/150" alt="Team Member 4">
+                    <h5>Emily White</h5>
+                    <p>CFO</p>
+                    <p>Emily manages our financial strategy and operations, ensuring financial stability and growth for
+                        the company.</p>
+                </div>
+                <!-- Member 5 -->
+                <div class="col-md-4 team-member text-center">
+                    <img src="https://via.placeholder.com/150" alt="Team Member 5">
+                    <h5>Michael Green</h5>
+                    <p>CMO</p>
+                    <p>Michael leads our marketing efforts, developing strategies to promote our brand and engage with
+                        our customers.</p>
+                </div>
+                <!-- Member 6 -->
+                <div class="col-md-4 team-member text-center">
+                    <img src="https://via.placeholder.com/150" alt="Team Member 6">
+                    <h5>Linda Blue</h5>
+                    <p>HR Manager</p>
+                    <p>Linda is responsible for our human resources, ensuring a positive work environment and managing
+                        employee relations.</p>
+                </div>
+            </div>
+        </div>
+    </section>

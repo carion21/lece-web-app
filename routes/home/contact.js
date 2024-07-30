@@ -29,6 +29,7 @@ router.post('/', async function (req, res, next) {
         let message_data = {
             name: body.name,
             email: body.email,
+            phone: body.phone,
             subject: body.subject,
             content: body.content
         }

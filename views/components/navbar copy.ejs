@@ -1,33 +1,63 @@
 <!-- components/navbar.ejs -->
-<div class="container-fluid px-md-5">
-    <div class="row justify-content-between">
-        <div class="col-md-4 d-flex">
-            <div class="social-media">
-                <p class="mb-0 mt-5 d-flex">
-                    <a href="https://www.facebook.com/p/Les-%C3%89ditions-Calebasse-61554878352440/"
-                        class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i
-                                class="sr-only">Facebook</i></span></a>
-                    <a href="https://www.instagram.com/les_editions_calebasse/p/C69in3wMoCF/"
-                        class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i
-                                class="sr-only">Instagram</i></span></a>
-                </p>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-2 text-center">
-                    <!-- <a class="navbar-brand" href="/">Les Editions <span>Calebasse</span> <small></small></a> -->
-                    <img src="/images/icon.png" alt="" width="10">
+<div class="navbar navbar-expand-lg">
+    <div class="container-fluid px-md-5">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4 text-center">
+                        <!-- <a class="navbar-brand" href="/">Les Editions <span>Calebasse</span> <small></small></a> -->
+                        <a href="/">
+                            <img src="/images/icon.png" alt="" width="10">
+                        </a>
+                    </div>
+                    <div class="col-md-8"></div>
                 </div>
-                <div class="col-md-8"></div>
+            </div>
+            <div class="col-md-6">
+                <form method="POST" action="/search" id="subscriberForm" name="subscriberForm" class="subscriberForm">
+                    <div class="row">
+                        <div class="col-md-12 mt-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" id="search"
+                                    value="<% if (locals.rbody) { %><%= rbody.search %><% } %>" 
+                                    placeholder="Recherche par titre, auteur, genre, etc..."
+                                    style="border: 2px solid #f79a33;"
+                                    required>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-outline-secondary"  
+                                        style="width: 100px; border: 2px solid #f79a33; background-color: #f3e3dc;">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2 d-flex justify-content-end">
+                <div class="social-media">
+                    <p class="mb-0 mt-4 d-flex">
+                        <a href="https://www.facebook.com/p/Les-%C3%89ditions-Calebasse-61554878352440/"
+                            class="d-flex align-items-center justify-content-center">
+                            <span class="fa fa-facebook">
+                                <i class="sr-only">Facebook</i>
+                            </span>
+                        </a>
+                        <a href="https://www.instagram.com/les_editions_calebasse/p/C69in3wMoCF/"
+                            class="d-flex align-items-center justify-content-center">
+                            <span class="fa fa-instagram">
+                                <i class="sr-only">Instagram</i>
+                            </span>
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
-        
     </div>
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+<div class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container-fluid">
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
@@ -47,4 +77,4 @@
             </ul>
         </div>
     </div>
-</nav>
+</div>

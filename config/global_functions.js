@@ -586,6 +586,42 @@ const core_create_message = (async (message_data) => {
   return result
 })
 
+const core_create_submission = (async (submission_data) => {
+  let result = {
+    success: false
+  }
+
+  let error = ""
+
+  let urlcomplete = urlapi + process.env.ROUTE_OF_CORE_FOR_BOOK_SUBMISSION
+  try {
+    let response = await axios.post(urlcomplete, submission_data, {
+      headers: {
+        ...submission_data.getHeaders()
+      }
+    })
+    if (response.status == 201) {
+      let rdata = response.data
+      result.success = true
+      result.data = rdata
+    } else {
+      error = response.data.message
+    }
+  } catch (err) {
+    error = err.message
+    if (err.response) {
+      console.log(err.response.data);
+      error = err.response.data.message
+    }
+  }
+
+  if (error != "") {
+    result.message = error
+  }
+
+  return result
+})
+
 
 module.exports = {
   control_service_data,
@@ -598,5 +634,6 @@ module.exports = {
   core_get_tops_book,
   core_get_recents_book,
   core_create_subscriber,
-  core_create_message
+  core_create_message,
+  core_create_submission
 }

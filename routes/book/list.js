@@ -20,9 +20,43 @@ router.get('/', async function (req, res, next) {
     res.render(service + '/list', {
         menus: getAppMenu(),
         moment: moment,
-        books: books
+        books: books,
+        text: "Tous les livres"
     });
 });
 
+router.get('/new', async function (req, res, next) {
+    let books = []
+
+    let r_core_books = await core_list_book();
+    if (r_core_books.success) {
+        books = r_core_books.data;
+        books = books.filter(book => book.status && book.isRecent);
+    }
+
+    res.render(service + '/list', {
+        menus: getAppMenu(),
+        moment: moment,
+        books: books,
+        text: "Nouveautés"
+    });
+});
+
+router.get('/coming', async function (req, res, next) {
+    let books = []
+
+    let r_core_books = await core_list_book();
+    if (r_core_books.success) {
+        books = r_core_books.data;
+        books = books.filter(book => book.status && book.isInReleaseFuture);
+    }
+
+    res.render(service + '/list', {
+        menus: getAppMenu(),
+        moment: moment,
+        books: books,
+        text: "À paraître"
+    });
+});
 
 module.exports = router;
