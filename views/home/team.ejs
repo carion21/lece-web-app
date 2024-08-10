@@ -34,10 +34,10 @@
             <h1 class="team-header">
                 Notre équipe
             </h1>
-            <div class="row">
+            <div class="row justify-content-center">
                 <% for (mb of team) { %>
                     <!-- Member <%= team.indexOf(mb) + 1 %> -->
-                    <div class="col-md-4 team-member text-center">
+                    <div class="col-md-3 team-member text-center">
                         <% var img = mb.image ? '/assets/'+mb.image : "https://via.placeholder.com/150" %>
                         <img src="<%= img %>" alt="Team Member <%= team.indexOf(mb) + 1 %>">
                         <h5><%= mb.fullname %></h5>
@@ -46,7 +46,7 @@
                     </div>
                 <% } %>
             </div>
-            <div class="row">
+            <div class="row d-none">
                 <!-- Member 4 -->
                 <div class="col-md-4 team-member text-center">
                     <img src="https://via.placeholder.com/150" alt="Team Member 4">
